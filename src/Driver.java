@@ -1,17 +1,25 @@
 import java.util.Random;
+import java.util.Scanner;
 import java.time.*;
 
 public class Driver
 {
 	public static void main(String[] args)
 	{
-		int counter = 0;
-		int[] ar = Driver.createArray();
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("What size array would you like to create? ");
+		String input = myObj.nextLine();
+		myObj.close();
+		int size = Integer.parseInt(input);
+		System.out.println("Processing . . .\n");
+		long counter = 0;
+		int[] ar;
 		Clock clockBegin = Clock.systemDefaultZone();
 		int totalMillisecondsStart = Driver.getStringFromClock(clockBegin);
+
 		do 
 		{
-			ar = Driver.createArray();
+			ar = Driver.createArray(size);
 //			Driver.displayArray(ar);
 //			System.out.println("\n");
 			counter++;
@@ -45,7 +53,6 @@ public class Driver
 				timeString = timeString + clockBeginString.charAt(i);
 			}
 		}
-		
 		return Driver.getTimeListFromClockString(timeString);
 	}
 	
@@ -89,17 +96,12 @@ public class Driver
 		int hours = 0;
 		int minutes = 0;
 		int seconds = 0;
-		
-		
 		hours = ms / 3600000;
 		ms %= 3600000;
-		
 		minutes = ms / 60000;
 		ms %= 60000;
-		
 		seconds = ms / 1000;
 		ms %= 1000;
-		
 		return (hours + " Hours " + minutes + " Minutes " + seconds + " Seconds " + ms + " Milliseconds.");
 	}
 	
@@ -115,14 +117,14 @@ public class Driver
 		return true;
 	}
 	
-	public static int[] createArray()
+	public static int[] createArray(int arraySize)
 	{
 		Random r = new Random();
 		
-		int[] ar = new int[10];
+		int[] ar = new int[arraySize];
 		for(int i = 0; i < ar.length; i++)
 		{
-			int num = r.nextInt(100);
+			int num = r.nextInt(1000);
 			ar[i] = num;
 		}
 		return ar;
