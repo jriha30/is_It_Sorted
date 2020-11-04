@@ -30,9 +30,7 @@ public class Driver
 		Clock clockEnd = Clock.systemDefaultZone();
 		int totalMillisecondsEnd = Driver.getStringFromClock(clockEnd);
 		int totalMilliseconds = Driver.subtractTimes(totalMillisecondsStart, totalMillisecondsEnd);
-		System.out.println("Total Runtime (in milliseconds): " + totalMilliseconds);
-		System.out.println("Total Runtime: " + Driver.millisecondsToHMS(totalMilliseconds) + "\n");
-		System.out.println("Total Array Count: " + Driver.addCommas(counterString) + "\n");
+		System.out.println("Total Runtime (in milliseconds): " + totalMilliseconds + "\nTotal Runtime: " + Driver.millisecondsToHMS(totalMilliseconds) + "\n\nTotal Array Count: " + Driver.addCommas(counterString) + "\n");
 		Driver.displayArray(ar);
 	}
 	
