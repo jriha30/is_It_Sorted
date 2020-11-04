@@ -26,13 +26,33 @@ public class Driver
 		}
 		while(!Driver.checkIfSorted(ar));
 		
+		String counterString = counter + "";
 		Clock clockEnd = Clock.systemDefaultZone();
 		int totalMillisecondsEnd = Driver.getStringFromClock(clockEnd);
 		int totalMilliseconds = Driver.subtractTimes(totalMillisecondsStart, totalMillisecondsEnd);
 		System.out.println("Total Runtime (in milliseconds): " + totalMilliseconds);
 		System.out.println("Total Runtime: " + Driver.millisecondsToHMS(totalMilliseconds) + "\n");
-		System.out.println("Total Array Count: " + counter + "\n");
+		System.out.println("Total Array Count: " + Driver.addCommas(counterString) + "\n");
 		Driver.displayArray(ar);
+	}
+	
+	public static String addCommas(String aString)
+	{
+		String newString = "";
+		int counter = 0;
+		for(int i = aString.length() - 1; i >= 0; i--)
+		{
+			counter++;
+			if(counter % 3 == 0 && i != 0)
+			{
+				newString = "," + aString.charAt(i) + newString;
+			}
+			else
+			{
+				newString = aString.charAt(i) + newString;
+			}
+		}
+		return newString;
 	}
 	
 	public static int getStringFromClock(Clock clock)
@@ -93,9 +113,9 @@ public class Driver
 	
 	public static String millisecondsToHMS(int ms)
 	{
-		int hours = 0;
-		int minutes = 0;
-		int seconds = 0;
+		int hours;
+		int minutes;
+		int seconds;
 		hours = ms / 3600000;
 		ms %= 3600000;
 		minutes = ms / 60000;
